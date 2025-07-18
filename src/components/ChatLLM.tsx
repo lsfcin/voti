@@ -83,29 +83,22 @@ export function ChatLLM({ className = '' }: ChatLLMProps) {
   }
 
   return (
-    <div className={`bg-white rounded-lg shadow-lg ${className}`}>
-      <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 rounded-t-lg">
-        <h3 className="font-semibold flex items-center">
-          <span className="mr-2">🤖</span>
-          Assistente de Transparência Política
-        </h3>
-      </div>
-
-      <div ref={messagesContainerRef} className="h-96 overflow-y-auto p-4 space-y-4">
+    <div className={`h-full flex flex-col ${className}`}>
+      <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.map((message) => (
           <div
             key={message.id}
             className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+              className={`max-w-xs lg:max-w-md xl:max-w-lg px-4 py-3 rounded-lg ${
                 message.isUser
-                  ? 'bg-purple-600 text-white'
+                  ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 text-gray-800'
               }`}
             >
-              <p className="text-sm">{message.text}</p>
-              <p className="text-xs opacity-70 mt-1">
+              <p className="text-sm leading-relaxed">{message.text}</p>
+              <p className="text-xs opacity-70 mt-2">
                 {message.timestamp.toLocaleTimeString('pt-BR', {
                   hour: '2-digit',
                   minute: '2-digit'
@@ -117,9 +110,9 @@ export function ChatLLM({ className = '' }: ChatLLMProps) {
         
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg">
+            <div className="bg-gray-100 text-gray-800 px-4 py-3 rounded-lg">
               <div className="flex items-center space-x-2">
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-purple-600"></div>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
                 <span className="text-sm">Pensando...</span>
               </div>
             </div>
@@ -129,25 +122,29 @@ export function ChatLLM({ className = '' }: ChatLLMProps) {
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSendMessage} className="p-4 border-t">
-        <div className="flex space-x-2">
-          <input
-            type="text"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Digite sua pergunta sobre política..."
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            disabled={isLoading}
-          />
-          <button
-            type="submit"
-            disabled={isLoading || !inputMessage.trim()}
-            className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
-          >
-            <span className="text-sm">📤</span>
-          </button>
-        </div>
-      </form>
+      <div className="border-t bg-white p-4 flex-shrink-0">
+        <form onSubmit={handleSendMessage}>
+          <div className="flex space-x-3">
+            <input
+              type="text"
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              placeholder="Pergunte sobre política, votações, deputados..."
+              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+              disabled={isLoading}
+            />
+            <button
+              type="submit"
+              disabled={isLoading || !inputMessage.trim()}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

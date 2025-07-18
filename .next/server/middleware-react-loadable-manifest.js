@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app\\\\page.tsx -> @/components/ConversationalQuizFixed\":{\"id\":\"app\\\\page.tsx -> @/components/ConversationalQuizFixed\",\"files\":[\"static/chunks/_app-pages-browser_src_components_ConversationalQuizFixed_tsx.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"

@@ -1,115 +1,209 @@
-'use client';
+﻿'use client';
 
-import dynamic from 'next/dynamic'
-import { Header } from '@/components/Header'
-import { Hero } from '@/components/Hero'
-import { LegislativeHouses } from '@/components/LegislativeHouses'
-import { SimpleQuiz } from '@/components/SimpleQuiz'
 import { ChatLLM } from '@/components/ChatLLM'
-
-const ConversationalQuiz = dynamic(
-  () => import('@/components/ConversationalQuizFixed'),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="animate-pulse">
-              <div className="h-8 bg-gray-300 rounded w-1/2 mx-auto mb-4"></div>
-              <div className="h-4 bg-gray-300 rounded w-1/3 mx-auto"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  }
-)
+import { useState } from 'react'
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState('abertura')
+
+  const tabs = [
+    { 
+      id: 'abertura', 
+      label: 'Abertura',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+      )
+    },
+    { 
+      id: 'conversacao', 
+      label: 'Conversação',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+        </svg>
+      )
+    },
+    { 
+      id: 'afinidade', 
+      label: 'Afinidade',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+        </svg>
+      )
+    }
+  ]
+
   return (
-    <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <LegislativeHouses />
-      <SimpleQuiz />
-      <ConversationalQuiz />
-      <div className="p-8 bg-gray-50">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Sistema com Dados Reais ✅</h2>
-            <p className="text-gray-600">
-              O questionário acima usa dados reais de votações dos deputados federais do Brasil. 
-              As perguntas são geradas dinamicamente com base em projetos de lei que realmente passaram pelo Congresso Nacional.
-            </p>
+    <div className="h-screen flex flex-col bg-gray-50">
+      {/* Header fixo */}
+      <header className="bg-white border-b border-gray-200 px-6 py-4 flex-shrink-0">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">V</span>
+            </div>
+            <h1 className="text-xl font-bold text-gray-800">Vôti</h1>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-semibold mb-3">📊 Dados Reais</h3>
-              <p className="text-gray-600">
-                Sistema integrado com votações do Congresso Nacional
-              </p>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6">
-              <h3 className="text-xl font-semibold mb-3">🤖 IA Simplifica</h3>
-              <p className="text-gray-600">
-                Perguntas claras sobre projetos complexos
-              </p>
-            </div>
+          
+          {/* Abas centralizadas */}
+          <div className="flex">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`p-3 rounded-lg transition-colors mx-1 ${
+                  activeTab === tab.id
+                    ? 'bg-blue-100 text-blue-600'
+                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
+                }`}
+                title={tab.label}
+              >
+                {tab.icon}
+              </button>
+            ))}
           </div>
-        </div>
-      </div>
-
-      {/* Seção do Chat LLM */}
-      <div className="p-8 bg-gradient-to-br from-purple-50 to-pink-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
-              💬 Converse com Nossa Assistente Política
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Tire suas dúvidas sobre política brasileira, entenda melhor as propostas 
-              e descubra como os políticos votam em questões que te afetam.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Chat */}
-            <div className="lg:col-span-2">
-              <ChatLLM className="w-full" />
-            </div>
-
-            {/* Dicas */}
-            <div className="space-y-6">
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  💡 Dicas para usar o chat:
-                </h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Pergunte sobre propostas em votação</li>
-                  <li>• Tire dúvidas sobre o processo legislativo</li>
-                  <li>• Entenda melhor as diferentes posições políticas</li>
-                  <li>• Explore dados de transparência</li>
-                  <li>• Saiba como deputados e senadores votaram</li>
-                </ul>
-              </div>
-
-              <div className="bg-white rounded-lg shadow-lg p-6">
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
-                  🎯 Exemplos de perguntas:
-                </h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• "Como funciona uma votação no Congresso?"</li>
-                  <li>• "O que é marco temporal indígena?"</li>
-                  <li>• "Quais deputados votaram a favor do auxílio emergencial?"</li>
-                  <li>• "Explique o que é PEC da transição"</li>
-                </ul>
-              </div>
-            </div>
+          
+          {/* Botões do topo direito */}
+          <div className="flex items-center space-x-3">
+            <button className="text-gray-600 hover:text-gray-800 p-2 rounded-lg hover:bg-gray-100 transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </button>
+            <button className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors" title="Login">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </button>
           </div>
         </div>
+      </header>
+
+      {/* Sistema de Abas */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+
+        {/* Conteúdo das Abas */}
+        <div className="flex-1 overflow-hidden">
+          {/* Aba Abertura */}
+          {activeTab === 'abertura' && (
+            <div className="h-full overflow-y-auto">
+              <div className="max-w-4xl mx-auto p-8">
+                {/* Seção principal */}
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                    todo político é igual!
+                    <span className="text-purple-600 block text-2xl">será?</span>
+                  </h2>
+                  <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+                    a gente mostra quem na prática, <strong>sem enrolação</strong>, tá na política pra te ajudar 
+                    e agir de acordo com os teus valores. baseado em <strong>votações reais</strong>, não em promessas.
+                  </p>
+                  
+                  {/* Cards de funcionalidades */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                      <div className="text-4xl mb-4">🗳️</div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Ações Reais</h3>
+                      <p className="text-gray-600">
+                        O que os políticos fizeram de verdade que afeta sua vida todos os dias
+                      </p>
+                    </div>
+                    
+                    <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                      <div className="text-4xl mb-4">📊</div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Quem te Ajuda</h3>
+                      <p className="text-gray-600">
+                        Descubra quais políticos realmente lutaram por coisas que te beneficiam
+                      </p>
+                    </div>
+                    
+                    <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                      <div className="text-4xl mb-4">👥</div>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Sem Enrolação</h3>
+                      <p className="text-gray-600">
+                        Perguntas simples sobre questões que mexem com seu bolso e sua vida
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Seção de notícias (placeholder) */}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <span className="text-2xl mr-2">📰</span>
+                    Últimas do Congresso
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <p className="text-sm text-gray-500">Em breve</p>
+                      <p className="text-gray-700">
+                        Aqui aparecerão notícias oficiais e análises de terceiros sobre as últimas movimentações do Congresso Nacional.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Aba Conversação */}
+          {activeTab === 'conversacao' && (
+            <div className="h-full flex flex-col">
+              <div className="px-6 py-4 bg-white border-b border-gray-100 flex-shrink-0">
+                <h2 className="text-lg font-semibold text-gray-800">
+                  💬 Assistente Política
+                </h2>
+                <p className="text-sm text-gray-600 mt-1">
+                  Faça perguntas, monte seu perfil político e tire dúvidas sobre transparência
+                </p>
+              </div>
+              
+              <div className="flex-1 overflow-hidden">
+                <ChatLLM className="h-full" />
+              </div>
+            </div>
+          )}
+
+          {/* Aba Afinidade */}
+          {activeTab === 'afinidade' && (
+            <div className="h-full overflow-y-auto">
+              <div className="max-w-6xl mx-auto p-8">
+                <div className="text-center mb-8">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                    🎯 Sua Afinidade Política
+                  </h2>
+                  <p className="text-gray-600 max-w-2xl mx-auto">
+                    Complete o questionário na aba "Conversação" para descobrir quais políticos 
+                    mais se alinham com suas opiniões baseado em votações reais.
+                  </p>
+                </div>
+
+                {/* Placeholder para resultados */}
+                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+                  <div className="text-6xl mb-4">📊</div>
+                  <h3 className="text-xl font-semibold text-gray-600 mb-2">
+                    Resultados aparecerão aqui
+                  </h3>
+                  <p className="text-gray-500 mb-6">
+                    Converse com nossa IA para descobrir sua afinidade com deputados e senadores
+                  </p>
+                  <button
+                    onClick={() => setActiveTab('conversacao')}
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+                  >
+                    Iniciar Conversa
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </main>
+    </div>
   );
 }

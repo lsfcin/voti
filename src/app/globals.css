@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Layout da aplicação - sem scroll */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#__next {
+  height: 100%;
+}
+
 /* Estilos personalizados para o Vôti */
 .affinity-bar {
   height: 1rem;
