@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos personalizados para o Vôti */
+.affinity-bar {
+  height: 1rem;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.affinity-none {
+  background-color: #ef4444;
+}
+
+.affinity-low {
+  background-color: #f97316;
+}
+
+.affinity-medium {
+  background-color: #eab308;
+}
+
+.affinity-high {
+  background-color: #22c55e;
+}
+
+.affinity-perfect {
+  background-color: #10b981;
+}

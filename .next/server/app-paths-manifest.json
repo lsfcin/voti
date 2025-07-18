@@ -1,0 +1,4 @@
+{
+  "/page": "app/page.js",
+  "/api/dynamic-questions/route": "app/api/dynamic-questions/route.js"
+}

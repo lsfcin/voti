@@ -1,0 +1,39 @@
+{
+  "name": "voti",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@google/genai": "^1.10.0",
+    "@huggingface/inference": "^2.6.4",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "axios": "^1.6.0",
+    "cheerio": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.0",
+    "lucide-react": "^0.263.1",
+    "next": "14.2.0",
+    "pdf-parse": "^1.1.1",
+    "postcss": "^8",
+    "react": "18.3.0",
+    "react-dom": "18.3.0",
+    "recharts": "^2.10.0",
+    "tailwind-merge": "^2.2.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.35",
+    "@types/pdf-parse": "^1.1.5"
+  }
+}
