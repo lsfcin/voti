@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { ChatLLM } from '@/components/ChatLLM'
+import VotingAnalysisComponent from '@/components/VotingAnalysisComponent'
 import { useState } from 'react'
 
 export default function Home() {
@@ -26,6 +27,15 @@ export default function Home() {
       )
     },
     { 
+      id: 'analise', 
+      label: 'Análise',
+      icon: (
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      )
+    },
+    { 
       id: 'afinidade', 
       label: 'Afinidade',
       icon: (
@@ -47,24 +57,6 @@ export default function Home() {
               <span className="text-white font-bold text-sm">V</span>
             </div>
             <h1 className="text-xl font-bold text-gray-800">Vôti</h1>
-          </div>
-          
-          {/* Abas centralizadas */}
-          <div className="flex">
-            {tabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`p-3 rounded-lg transition-colors mx-1 ${
-                  activeTab === tab.id
-                    ? 'bg-blue-100 text-blue-600'
-                    : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'
-                }`}
-                title={tab.label}
-              >
-                {tab.icon}
-              </button>
-            ))}
           </div>
           
           {/* Botões do topo direito */}
@@ -154,18 +146,16 @@ export default function Home() {
           {/* Aba Conversação */}
           {activeTab === 'conversacao' && (
             <div className="h-full flex flex-col">
-              <div className="px-6 py-4 bg-white border-b border-gray-100 flex-shrink-0">
-                <h2 className="text-lg font-semibold text-gray-800">
-                  💬 Assistente Política
-                </h2>
-                <p className="text-sm text-gray-600 mt-1">
-                  Faça perguntas, monte seu perfil político e tire dúvidas sobre transparência
-                </p>
-              </div>
-              
               <div className="flex-1 overflow-hidden">
                 <ChatLLM className="h-full" />
               </div>
+            </div>
+          )}
+
+          {/* Aba Análise */}
+          {activeTab === 'analise' && (
+            <div className="h-full overflow-y-auto">
+              <VotingAnalysisComponent />
             </div>
           )}
 
@@ -204,6 +194,26 @@ export default function Home() {
           )}
         </div>
       </div>
+
+      {/* Barra de Navegação Inferior */}
+      <nav className="bg-white border-t border-gray-200 px-4 py-2 flex-shrink-0">
+        <div className="flex justify-center items-center space-x-8">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
+              className={`p-2 transition-colors ${
+                activeTab === tab.id
+                  ? 'text-blue-600'
+                  : 'text-gray-400 hover:text-gray-600'
+              }`}
+              title={tab.label}
+            >
+              {tab.icon}
+            </button>
+          ))}
+        </div>
+      </nav>
     </div>
   );
 }
