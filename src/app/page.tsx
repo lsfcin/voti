@@ -2,6 +2,7 @@
 
 import { ChatLLM } from '@/components/ChatLLM'
 import VotingAnalysisComponent from '@/components/VotingAnalysisComponent'
+import DeputyVotingChart from '@/components/DeputyVotingChart'
 import { useState } from 'react'
 
 export default function Home() {
@@ -122,6 +123,11 @@ export default function Home() {
                       </p>
                     </div>
                   </div>
+                </div>
+
+                {/* Gráfico de Votações dos Deputados */}
+                <div className="my-16">
+                  <DeputyVotingChart onNavigateToQuiz={() => setActiveTab('conversacao')} />
                 </div>
 
                 {/* Seção de notícias (placeholder) */}

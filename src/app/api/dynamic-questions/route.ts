@@ -10,7 +10,6 @@ export async function GET() {
     // Inicializa analyzer se necessário
     if (!cachedAnalyzer) {
       cachedAnalyzer = new VotingAnalyzer();
-      await cachedAnalyzer.loadVotingData();
     }
 
     // Gera perguntas se necessário
