@@ -3,6 +3,7 @@
 import { ChatLLM } from '@/components/ChatLLM'
 import VotingAnalysisComponent from '@/components/VotingAnalysisComponent'
 import DeputyVotingChart from '@/components/DeputyVotingChart'
+import { Hero } from '@/components/Hero'
 import { useState } from 'react'
 
 export default function Home() {
@@ -85,52 +86,16 @@ export default function Home() {
           {/* Aba Abertura */}
           {activeTab === 'abertura' && (
             <div className="h-full overflow-y-auto">
-              <div className="max-w-4xl mx-auto p-8">
-                {/* Seção principal */}
-                <div className="text-center mb-12">
-                  <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                    todo político é igual!
-                    <span className="text-purple-600 block text-2xl">será?</span>
-                  </h2>
-                  <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-                    a gente mostra quem na prática, <strong>sem enrolação</strong>, tá na política pra te ajudar 
-                    e agir de acordo com os teus valores. baseado em <strong>votações reais</strong>, não em promessas.
-                  </p>
-                  
-                  {/* Cards de funcionalidades */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                    <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-200">
-                      <div className="text-4xl mb-4">🗳️</div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Ações Reais</h3>
-                      <p className="text-gray-600">
-                        O que os políticos fizeram de verdade que afeta sua vida todos os dias
-                      </p>
-                    </div>
-                    
-                    <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-200">
-                      <div className="text-4xl mb-4">📊</div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Quem te Ajuda</h3>
-                      <p className="text-gray-600">
-                        Descubra quais políticos realmente lutaram por coisas que te beneficiam
-                      </p>
-                    </div>
-                    
-                    <div className="text-center p-6 bg-white rounded-lg shadow-sm border border-gray-200">
-                      <div className="text-4xl mb-4">👥</div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">Sem Enrolação</h3>
-                      <p className="text-gray-600">
-                        Perguntas simples sobre questões que mexem com seu bolso e sua vida
-                      </p>
-                    </div>
-                  </div>
-                </div>
+              {/* Seção Hero */}
+              <Hero />
 
-                {/* Gráfico de Votações dos Deputados */}
-                <div className="my-16">
-                  <DeputyVotingChart onNavigateToQuiz={() => setActiveTab('conversacao')} />
-                </div>
+              {/* Gráfico de Votações dos Deputados */}
+              <div className="max-w-4xl mx-auto px-8 my-16">
+                <DeputyVotingChart onNavigateToQuiz={() => setActiveTab('conversacao')} />
+              </div>
 
-                {/* Seção de notícias (placeholder) */}
+              {/* Seção de notícias (placeholder) */}
+              <div className="max-w-4xl mx-auto px-8 pb-8">
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                     <span className="text-2xl mr-2">📰</span>
