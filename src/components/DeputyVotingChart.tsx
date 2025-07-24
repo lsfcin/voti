@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { analyzeDeputyVotingPatterns, getVotingStatsDescription } from '@/lib/deputyAnalysis';
+import { APP_TEXTS, replaceVariables } from '@/lib/constants';
 
 interface DeputyVotingChartProps {
   onNavigateToQuiz?: () => void;
@@ -41,30 +42,26 @@ const DeputyVotingChart: React.FC<DeputyVotingChartProps> = ({ onNavigateToQuiz 
         {/* Texto introdutório */}
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            Nem Todo Deputado Vota Igual
+            {APP_TEXTS.CHART_TITLE}
           </h2>
           <p className="text-lg text-gray-700 mb-2">
-            Para mostrar as diferenças, analisamos os <span className="font-semibold text-cyan-600">{stats.totalProjects} projetos</span> que 
-            melhor distinguem as posições políticas e estamos mostrando para vocês que nem todo mundo vota igual.
-          </p>
-          <p className="text-base text-gray-600 mb-4">
-            Cada barra representa um deputado. 
+            {replaceVariables(APP_TEXTS.CHART_DESCRIPTION, { projectsCount: stats.totalProjects.toString() })}
           </p>
           
           {/* Legenda visual das cores */}
           <div className="flex flex-wrap justify-center gap-4 mb-4 p-3 bg-gray-50 rounded-lg">
             <div className="flex items-center space-x-2">
               <div className="w-4 h-4 bg-cyan-500 rounded"></div>
-              <span className="text-sm font-medium text-cyan-700">A FAVOR</span>
+              <span className="text-sm font-medium text-cyan-700">{APP_TEXTS.CHART_LEGEND.IN_FAVOR}</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-4 h-4 bg-pink-500 rounded"></div>
-              <span className="text-sm font-medium text-pink-700">CONTRA</span>
+              <span className="text-sm font-medium text-pink-700">{APP_TEXTS.CHART_LEGEND.AGAINST}</span>
             </div>
           </div>
           
           <p className="text-sm text-gray-500 mt-2">
-            Deputados ordenados por tendência de votos (de mais "contra" para mais "a favor")
+            cada barra representa um deputado
           </p>
         </div>
 
@@ -98,8 +95,8 @@ const DeputyVotingChart: React.FC<DeputyVotingChartProps> = ({ onNavigateToQuiz 
                                 group-hover:opacity-100 transition-opacity duration-300 z-20 
                                 whitespace-nowrap shadow-xl border border-gray-700 pointer-events-none">
                     <div className="font-semibold text-blue-300 mb-1">{deputy.name}</div>
-                    <div className="text-cyan-300">✓ A FAVOR: {deputy.sim} ({deputy.percentualSim.toFixed(1)}%)</div>
-                    <div className="text-pink-300">✗ CONTRA: {deputy.nao} ({((deputy.nao / totalVotes) * 100).toFixed(1)}%)</div>
+                    <div className="text-cyan-300">✓ {APP_TEXTS.CHART_LEGEND.IN_FAVOR}: {deputy.sim} ({deputy.percentualSim.toFixed(1)}%)</div>
+                    <div className="text-pink-300">✗ {APP_TEXTS.CHART_LEGEND.AGAINST}: {deputy.nao} ({((deputy.nao / totalVotes) * 100).toFixed(1)}%)</div>
                     <div className="text-xs text-gray-400 mt-2 pt-1 border-t border-gray-600">
                       Votos efetivos: {effectiveVotes} de {deputy.total} projetos
                     </div>
@@ -137,13 +134,13 @@ const DeputyVotingChart: React.FC<DeputyVotingChartProps> = ({ onNavigateToQuiz 
           
           {/* Eixo X */}
           <div className="mt-2 text-center text-sm text-gray-500">
-            Deputados ({sampledPatterns.length} de 513 mostrados)
+            deputados ({sampledPatterns.length} de 513 mostrados)
           </div>
           
           {/* Labels dos extremos */}
           <div className="flex justify-between mt-2 text-xs text-gray-600">
-            <div>← Mais "CONTRA"</div>
-            <div>Mais "A FAVOR" →</div>
+            <div>← mais "{APP_TEXTS.CHART_LEGEND.AGAINST}"</div>
+            <div>mais "{APP_TEXTS.CHART_LEGEND.IN_FAVOR}" →</div>
           </div>
         </div>
 
@@ -152,18 +149,14 @@ const DeputyVotingChart: React.FC<DeputyVotingChartProps> = ({ onNavigateToQuiz 
         {/* Conclusão */}
         <div className="mt-6 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
           <p className="text-blue-900 text-center text-lg mb-4">
-            <span className="font-semibold">Viu a diferença?</span> Os deputados têm comportamentos 
-            completamente diferentes nas votações que mais importam.
+            <span className="font-semibold">diferença tem</span>. descubra quem mais se alinha com você
           </p>
           <div className="text-center">
-            <p className="text-blue-700 mb-4">
-              Descubra qual deles mais se alinha com você respondendo nosso questionário!
-            </p>
             <button 
               onClick={onNavigateToQuiz}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg transform hover:scale-105"
             >
-              🗳️ Descobrir Minha Afinidade Política
+              {APP_TEXTS.CTA.DISCOVER_AFFINITY}
             </button>
           </div>
         </div>

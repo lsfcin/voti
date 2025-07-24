@@ -4,6 +4,7 @@ import { ChatLLM } from '@/components/ChatLLM'
 import VotingAnalysisComponent from '@/components/VotingAnalysisComponent'
 import DeputyVotingChart from '@/components/DeputyVotingChart'
 import { Hero } from '@/components/Hero'
+import { APP_TEXTS, replaceVariables } from '@/lib/constants'
 import { useState } from 'react'
 
 export default function Home() {
@@ -87,12 +88,7 @@ export default function Home() {
           {activeTab === 'abertura' && (
             <div className="h-full overflow-y-auto">
               {/* Seção Hero */}
-              <Hero />
-
-              {/* Gráfico de Votações dos Deputados */}
-              <div className="max-w-4xl mx-auto px-8 my-16">
-                <DeputyVotingChart onNavigateToQuiz={() => setActiveTab('conversacao')} />
-              </div>
+              <Hero onNavigateToQuiz={() => setActiveTab('conversacao')} />
 
               {/* Seção de notícias (placeholder) */}
               <div className="max-w-4xl mx-auto px-8 pb-8">
@@ -139,8 +135,7 @@ export default function Home() {
                     🎯 Sua Afinidade Política
                   </h2>
                   <p className="text-gray-600 max-w-2xl mx-auto">
-                    Complete o questionário na aba "Conversação" para descobrir quais políticos 
-                    mais se alinham com suas opiniões baseado em votações reais.
+                    {replaceVariables(APP_TEXTS.MAIN_PAGE.COMPLETE_QUIZ, { basedOn: APP_TEXTS.BASED_ON_REAL_VOTES })}
                   </p>
                 </div>
 
@@ -148,16 +143,16 @@ export default function Home() {
                 <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
                   <div className="text-6xl mb-4">📊</div>
                   <h3 className="text-xl font-semibold text-gray-600 mb-2">
-                    Resultados aparecerão aqui
+                    {APP_TEXTS.MAIN_PAGE.RESULTS_PLACEHOLDER}
                   </h3>
                   <p className="text-gray-500 mb-6">
-                    Converse com nossa IA para descobrir sua afinidade com deputados e senadores
+                    {APP_TEXTS.MAIN_PAGE.RESULTS_DESCRIPTION}
                   </p>
                   <button
                     onClick={() => setActiveTab('conversacao')}
                     className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                   >
-                    Iniciar Conversa
+                    {APP_TEXTS.MAIN_PAGE.START_CONVERSATION_BUTTON}
                   </button>
                 </div>
               </div>

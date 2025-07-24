@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import { APP_TEXTS, replaceVariables } from '@/lib/constants';
 
 interface Message {
   id: number;
@@ -21,7 +22,7 @@ const ConversationalQuiz: React.FC = () => {
       const welcomeMessage: Message = {
         id: 1,
         type: 'bot',
-        content: 'Olá! 👋 Eu sou sua assistente virtual para descobrir sua afinidade política. Vou fazer algumas perguntas sobre temas importantes do Brasil baseadas em votações reais do Congresso. Pronto para começar?',
+        content: replaceVariables(APP_TEXTS.QUIZ.WELCOME_MESSAGE, { votes: 'votações reais do Congresso' }),
         timestamp: new Date()
       };
       setMessages([welcomeMessage]);
@@ -39,7 +40,7 @@ const ConversationalQuiz: React.FC = () => {
     const botMessage: Message = {
       id: messages.length + 1,
       type: 'bot',
-      content: 'Perfeito! O questionário completo com IA ainda está sendo finalizado. Por enquanto, use o questionário rápido acima para descobrir sua afinidade com os deputados federais! 🗳️',
+      content: APP_TEXTS.QUIZ.DEVELOPMENT_MESSAGE,
       timestamp: new Date()
     };
     setMessages(prev => [...prev, botMessage]);
@@ -50,21 +51,20 @@ const ConversationalQuiz: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            💬 Chat com IA - Descubra sua Afinidade Política
+            {APP_TEXTS.QUIZ.CHAT_TITLE}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Converse com nossa IA sobre questões políticas importantes do Brasil. 
-            Baseado em votações reais do Congresso Nacional.
+            {replaceVariables(APP_TEXTS.QUIZ.CHAT_DESCRIPTION, { based: APP_TEXTS.REAL_CONGRESS_VOTES })}
           </p>
         </div>
 
         <div className="bg-white rounded-lg shadow-lg max-w-2xl mx-auto">
           <div className="p-6 border-b border-gray-200">
             <h3 className="text-lg font-semibold text-gray-900">
-              Conversa com IA Política
+              {APP_TEXTS.QUIZ.CHAT_HEADER}
             </h3>
             <p className="text-sm text-gray-600 mt-1">
-              Baseado em dados reais do Congresso Nacional
+              {APP_TEXTS.QUIZ.CHAT_SUBTITLE}
             </p>
           </div>
 
@@ -112,11 +112,11 @@ const ConversationalQuiz: React.FC = () => {
                 onClick={handleStartQuiz}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
               >
-                Começar Conversa
+                {APP_TEXTS.QUIZ.START_CONVERSATION}
               </button>
             </div>
             <p className="text-center text-sm text-gray-500 mt-3">
-              Chat completo em desenvolvimento. Use o questionário rápido acima! 
+              {APP_TEXTS.QUIZ.DEV_NOTICE}
             </p>
           </div>
         </div>

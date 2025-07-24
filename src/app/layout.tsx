@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { APP_TEXTS } from '@/lib/constants'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Vôti - Descubra sua afinidade política',
-  description: 'Aplicativo que mostra sua afinidade com deputados e senadores brasileiros baseado em votações reais do Congresso Nacional.',
-  keywords: 'política, brasil, deputados, senadores, votações, congresso, democracia',
+  title: APP_TEXTS.METADATA.TITLE,
+  description: APP_TEXTS.METADATA.DESCRIPTION,
+  keywords: APP_TEXTS.METADATA.KEYWORDS,
 }
 
 export default function RootLayout({

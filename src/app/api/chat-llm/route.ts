@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { APP_TEXTS } from '@/lib/constants'
 
 interface ChatRequest {
   message: string
@@ -93,37 +94,30 @@ function getBasicFallbackResponse(message: string): string {
   const lowerMessage = message.toLowerCase()
   
   if (lowerMessage.includes('voto') || lowerMessage.includes('votação')) {
-    return '🗳️ No Vôti, analisamos votações reais do Congresso para mostrar sua afinidade política com deputados e senadores. Que tal fazer nosso questionário para descobrir seus alinhamentos?'
+    return APP_TEXTS.API_MESSAGES.VOTING_EXPLANATION
   }
   
   if (lowerMessage.includes('deputado') || lowerMessage.includes('senador')) {
-    return '👥 Temos dados de todos os deputados federais e senadores em exercício. Posso ajudar você a entender suas posições e votações. Sobre qual político gostaria de saber mais?'
+    return APP_TEXTS.API_MESSAGES.POLITICIANS_INFO
   }
   
   if (lowerMessage.includes('transparência')) {
-    return '🔍 A transparência é fundamental para a democracia! Coletamos dados públicos do Congresso para tornar as informações mais acessíveis aos cidadãos. Como posso ajudar você a entender melhor?'
+    return APP_TEXTS.API_MESSAGES.TRANSPARENCY
   }
   
   if (lowerMessage.includes('como funciona')) {
-    return '⚙️ O Vôti funciona assim: 1) Coletamos votações reais do Congresso, 2) Simplificamos com IA, 3) Você responde perguntas, 4) Mostramos sua afinidade com políticos. Simples e transparente!'
+    return APP_TEXTS.API_MESSAGES.HOW_IT_WORKS_DETAILED
   }
 
   if (lowerMessage.includes('congresso') || lowerMessage.includes('câmara') || lowerMessage.includes('senado')) {
-    return '🏛️ O Congresso Nacional é formado pela Câmara dos Deputados (513 deputados) e Senado Federal (81 senadores). Eles votam leis que afetam diretamente sua vida. Quer saber sobre alguma votação específica?'
+    return APP_TEXTS.API_MESSAGES.CONGRESS_INFO
   }
 
   if (lowerMessage.includes('projeto') || lowerMessage.includes('lei')) {
-    return '📜 Os projetos de lei passam por várias etapas: apresentação, comissões, votação e sanção. Cada etapa pode mudar sua vida! Quer entender como algum projeto específico foi votado?'
+    return APP_TEXTS.API_MESSAGES.BILLS_PROCESS
   }
   
-  return `🤖 Olá! Sou sua assistente de transparência política. Posso ajudar com informações sobre:
-  
-• Votações do Congresso Nacional
-• Perfis de deputados e senadores  
-• Como funciona o processo legislativo
-• Dados de transparência pública
-
-Sobre o que gostaria de conversar?`
+  return APP_TEXTS.API_MESSAGES.DEFAULT_GREETING
 }
 
 export async function POST(request: NextRequest) {

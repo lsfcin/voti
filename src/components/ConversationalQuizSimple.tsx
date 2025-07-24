@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { APP_TEXTS, replaceVariables } from '@/lib/constants';
 
 export default function ConversationalQuizSimple() {
   const [isLoaded, setIsLoaded] = useState(true);
@@ -25,21 +26,20 @@ export default function ConversationalQuizSimple() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            💬 Chat com IA - Descubra sua Afinidade Política
+            {APP_TEXTS.QUIZ.CHAT_TITLE}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Converse com nossa IA sobre questões políticas importantes do Brasil. 
-            Baseado em votações reais do Congresso Nacional.
+            {replaceVariables(APP_TEXTS.QUIZ.CHAT_DESCRIPTION, { based: APP_TEXTS.REAL_CONGRESS_VOTES })}
           </p>
         </div>
 
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="text-center py-8">
             <p className="text-gray-600 mb-4">
-              Chat conversacional temporariamente simplificado para resolver problemas de carregamento.
+              {APP_TEXTS.QUIZ.SIMPLIFIED_MESSAGE}
             </p>
             <p className="text-sm text-gray-500">
-              Use o questionário rápido acima para descobrir sua afinidade política.
+              {APP_TEXTS.QUIZ.FALLBACK_MESSAGE}
             </p>
           </div>
         </div>
