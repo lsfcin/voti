@@ -1,3 +1,4 @@
+// Next.js API route: analyzes deputy voting data and computes similarity to user answers
 import { NextRequest, NextResponse } from 'next/server';
 import { VotingAnalyzer } from '@/lib/votingAnalyzer';
 

@@ -1,3 +1,4 @@
+// DeputyVotingChart: bar chart showing top deputies ranked by voting similarity to the user
 'use client';
 
 import React from 'react';

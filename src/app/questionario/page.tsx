@@ -1,3 +1,4 @@
+// Questionnaire page: multi-step voting quiz that computes alignment with deputies
 'use client'
 
 import { useState } from 'react'

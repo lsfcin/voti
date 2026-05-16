@@ -1,4 +1,5 @@
 # Voti
+> Political alignment tool comparing user answers to real deputy voting records
 
 Political alignment tool — users answer a questionnaire about legislative topics; results are compared to real deputy voting records to compute affinity scores.
 
@@ -69,3 +70,22 @@ API routes → Brazilian Congress scraping → deputy/voting data
 - SPECS.md does not exist yet — add it when the data model and scoring algorithm stabilize.
 - Scraping routes are fragile (Congress website structure changes); isolate parsing logic.
 - No auth — all API routes are public; keep sensitive operations on the admin (`/extrair`) page.
+
+<!-- routing:start -->
+## Routing
+
+| Subdirectory | Description |
+|--------------|-------------|
+| [`public/`](public/CONTEXT.md) | — |
+| [`src/`](src/CONTEXT.md) | — |
+
+| File | Interface | API | Description |
+|------|-----------|-----|-------------|
+| [`README.md`](README.md) | — | — | Vôti 🗳️ |
+| [`download-images.js`](download-images.js) | [`download-images.d.ts`](download-images.d.ts) | `downloadImage`, `downloadAll` | ← add first-line comment |
+| [`generate-top-projects.js`](generate-top-projects.js) | [`generate-top-projects.d.ts`](generate-top-projects.d.ts) | `loadTopProjects`, `hasTopProjectsData`, `getProjectById`, `getProjectsByCriteria`, `getTopProjectsStats` | ← add first-line comment |
+| [`next.config.js`](next.config.js) | [`next.config.d.ts`](next.config.d.ts) | — | ← add first-line comment |
+| [`next.config.ts`](next.config.ts) | [`next.config.d.ts`](next.config.d.ts) | — | ← add first-line comment |
+| [`postcss.config.js`](postcss.config.js) | — | — | ← add first-line comment |
+| [`tailwind.config.ts`](tailwind.config.ts) | [`tailwind.config.d.ts`](tailwind.config.d.ts) | — | ← add first-line comment |
+<!-- routing:end -->

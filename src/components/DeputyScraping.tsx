@@ -1,3 +1,4 @@
+// DeputyScraping: admin UI for scraping deputy data from the Chamber of Deputies website
 import React, { useState } from 'react';
 import { Download, User, MapPin, Users } from 'lucide-react';
 

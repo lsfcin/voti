@@ -1,3 +1,4 @@
+// BackgroundCarousel: auto-cycling image carousel used as page background
 'use client'
 
 import { useState, useEffect } from 'react'

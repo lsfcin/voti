@@ -1,3 +1,4 @@
+// ConversationalQuizWrapper: dynamic-imports the quiz component to avoid SSR issues
 'use client';
 
 import { useEffect, useState } from 'react';

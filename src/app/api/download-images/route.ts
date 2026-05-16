@@ -1,3 +1,4 @@
+// Next.js API route: downloads and saves deputy profile images to the local filesystem
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
 import { existsSync } from 'fs';

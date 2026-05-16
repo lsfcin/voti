@@ -1,3 +1,4 @@
+// Next.js API route: tests DeepSeek API connectivity and key validity
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET() {

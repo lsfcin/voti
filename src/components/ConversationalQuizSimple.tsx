@@ -1,3 +1,4 @@
+// ConversationalQuizSimple: simplified single-page quiz variant without scroll behavior
 'use client';
 
 import { useState } from 'react';

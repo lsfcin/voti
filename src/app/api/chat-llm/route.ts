@@ -1,3 +1,4 @@
+// Next.js API route: proxies chat messages to Gemini LLM for conversational questionnaire
 import { NextRequest, NextResponse } from 'next/server'
 import { APP_TEXTS } from '@/lib/constants'
 

@@ -1,3 +1,4 @@
+// Next.js API route: simplifies bill text via HuggingFace inference API
 import { NextResponse } from 'next/server'
 import { HfInference } from '@huggingface/inference'
 

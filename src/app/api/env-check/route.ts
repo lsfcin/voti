@@ -1,3 +1,4 @@
+// Next.js API route: checks required environment variables and returns their status
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET() {

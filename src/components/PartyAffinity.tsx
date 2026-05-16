@@ -1,3 +1,4 @@
+// PartyAffinity: displays a list of political parties ranked by affinity score
 interface Party {
   party: string
   affinity: number

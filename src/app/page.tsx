@@ -1,3 +1,4 @@
+// Home page: entry point with chat LLM, voting analysis, and deputy chart sections
 ﻿'use client';
 
 import { ChatLLM } from '@/components/ChatLLM'

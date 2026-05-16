@@ -1,3 +1,4 @@
+// QuestionnaireResults: displays final affinity rankings after quiz completion
 'use client'
 
 import { useState, useEffect } from 'react'

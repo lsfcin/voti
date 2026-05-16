@@ -1,3 +1,4 @@
+// VotingQuestion: single question card with expandable bill summary and stance buttons
 'use client'
 
 import { useState } from 'react'

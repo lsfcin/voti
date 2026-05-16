@@ -1,3 +1,4 @@
+// ConversationalQuizFixed: fixed-layout variant of the conversational quiz with scroll management
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';

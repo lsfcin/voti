@@ -1,3 +1,4 @@
+// Header: top navigation bar with logo and main nav links
 'use client'
 
 import Link from 'next/link'

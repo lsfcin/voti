@@ -1,3 +1,4 @@
+// ConversationalQuiz: step-by-step quiz presenting voting questions and collecting user stances
 'use client'
 
 import { useState } from 'react'

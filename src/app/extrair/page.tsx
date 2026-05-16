@@ -1,3 +1,4 @@
+// Data extraction admin page: deputy scraping and photo extraction tools
 'use client';
 
 import { useState } from 'react';

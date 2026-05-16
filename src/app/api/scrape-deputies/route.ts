@@ -1,3 +1,4 @@
+// Next.js API route: scrapes deputy data from the Chamber of Deputies website
 import { NextRequest, NextResponse } from 'next/server';
 import * as cheerio from 'cheerio';
 

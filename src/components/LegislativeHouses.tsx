@@ -1,3 +1,4 @@
+// LegislativeHouses: info section explaining the Chamber of Deputies and Federal Senate
 'use client'
 
 import { APP_TEXTS } from '@/lib/constants'

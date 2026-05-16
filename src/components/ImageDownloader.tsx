@@ -1,5 +1,9 @@
+// ImageDownloader: admin UI for triggering bulk deputy image downloads and showing status
 import React, { useState, useEffect } from 'react';
 import { Download, CheckCircle, AlertCircle, Image } from 'lucide-react';
+import { ImageDownloadResults } from './ImageDownloadResults';
+
+export { ImageDownloadResults } from './ImageDownloadResults';
 
 interface ImageStatus {
   filename: string;
@@ -31,7 +35,6 @@ export default function ImageDownloader() {
     try {
       const response = await fetch('/api/download-images');
       const data = await response.json();
-      
       if (data.success) {
         setImageStatus(data.images);
       }
@@ -45,21 +48,15 @@ export default function ImageDownloader() {
   const downloadImages = async () => {
     setDownloading(true);
     setDownloadResults([]);
-
     try {
       const response = await fetch('/api/download-images', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ imageType: 'legislative' }),
       });
-
       const data = await response.json();
-      
       if (data.success) {
         setDownloadResults(data.results);
-        // Atualizar status das imagens
         await checkImageStatus();
       }
     } catch (error) {
@@ -92,9 +89,7 @@ export default function ImageDownloader() {
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-          Download de Imagens
-        </h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">Download de Imagens</h2>
         <p className="text-gray-600">
           Baixar imagens oficiais das casas legislativas para uso local
         </p>
@@ -120,7 +115,6 @@ export default function ImageDownloader() {
         </div>
       )}
 
-      {/* Status das imagens */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">Status das Imagens</h3>
         <div className="space-y-3">
@@ -151,70 +145,11 @@ export default function ImageDownloader() {
         </div>
       </div>
 
-      {/* Resultados do download */}
-      {downloadResults.length > 0 && (
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Resultados do Download</h3>
-          <div className="space-y-3">
-            {downloadResults.map((result, index) => (
-              <div 
-                key={index} 
-                className={`p-4 rounded-lg border ${
-                  result.success 
-                    ? 'bg-green-50 border-green-200' 
-                    : 'bg-red-50 border-red-200'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-medium text-gray-900">{result.description}</p>
-                    <p className="text-sm text-gray-600">{result.filename}</p>
-                    {result.error && (
-                      <p className="text-sm text-red-600 mt-1">Erro: {result.error}</p>
-                    )}
-                  </div>
-                  <div className="text-right">
-                    {result.success ? (
-                      <>
-                        <CheckCircle className="w-5 h-5 text-green-500 ml-auto mb-1" />
-                        {result.size && (
-                          <p className="text-sm text-green-600">{formatFileSize(result.size)}</p>
-                        )}
-                      </>
-                    ) : (
-                      <AlertCircle className="w-5 h-5 text-red-500 ml-auto" />
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Preview das imagens locais */}
-      {imageStatus.some(img => img.exists) && (
-        <div className="mt-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Preview das Imagens Locais</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {imageStatus
-              .filter(img => img.exists && img.localPath)
-              .map((image, index) => (
-                <div key={index} className="bg-gray-100 rounded-lg overflow-hidden">
-                  <img
-                    src={image.localPath!}
-                    alt={image.description}
-                    className="w-full h-32 object-cover"
-                  />
-                  <div className="p-3">
-                    <p className="text-sm font-medium text-gray-900">{image.description}</p>
-                    <p className="text-xs text-gray-500">{image.localPath}</p>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-      )}
+      <ImageDownloadResults
+        downloadResults={downloadResults}
+        imageStatus={imageStatus}
+        formatFileSize={formatFileSize}
+      />
     </div>
   );
 }

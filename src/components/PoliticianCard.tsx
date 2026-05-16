@@ -1,3 +1,4 @@
+// PoliticianCard: card UI for a single deputy with photo, name, party, and affinity score
 'use client'
 
 import { useState } from 'react'

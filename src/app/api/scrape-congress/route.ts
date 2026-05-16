@@ -1,3 +1,4 @@
+// Next.js API route: scrapes congress metadata from the Brazilian Congress website
 import { NextResponse } from 'next/server'
 import axios from 'axios'
 import * as cheerio from 'cheerio'

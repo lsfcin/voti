@@ -1,3 +1,4 @@
+// Next.js API route: extracts and saves deputy photos from the Chamber of Deputies website
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFile, mkdir, readFile } from 'fs/promises';
 import { existsSync } from 'fs';

@@ -1,3 +1,4 @@
+// ProgressBar: visual progress indicator for multi-step quiz flow
 interface ProgressBarProps {
   progress: number
 }

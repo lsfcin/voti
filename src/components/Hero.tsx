@@ -1,3 +1,4 @@
+// Hero: landing section with headline, CTA button, and link to the voting quiz
 'use client'
 
 import Link from 'next/link'

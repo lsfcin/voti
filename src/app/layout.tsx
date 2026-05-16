@@ -1,3 +1,4 @@
+// Root layout: global metadata, fonts, and shared HTML shell for the Voti app
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { APP_TEXTS } from '@/lib/constants'

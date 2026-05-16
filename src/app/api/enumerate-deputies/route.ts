@@ -1,3 +1,4 @@
+// Next.js API route: enumerates deputy IDs and metadata from the local data files
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';

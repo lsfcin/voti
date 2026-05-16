@@ -1,3 +1,4 @@
+// Next.js API route: generates dynamic voting questions from pre-analyzed deputy data
 import { NextRequest, NextResponse } from 'next/server';
 import { VotingAnalyzer } from '@/lib/votingAnalyzer';
 

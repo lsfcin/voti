@@ -1,3 +1,4 @@
+// Next.js API route: serves the list of politicians from local JSON data files
 import { NextResponse } from 'next/server';
 import { readFileSync } from 'fs';
 import { join } from 'path';

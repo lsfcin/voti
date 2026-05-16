@@ -1,3 +1,4 @@
+// ChatLLM: conversational chat interface that queries the LLM API for deputy alignment questions
 'use client'
 
 import { useState, useRef, useEffect } from 'react'

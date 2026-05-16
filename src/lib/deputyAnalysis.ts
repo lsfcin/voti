@@ -1,3 +1,4 @@
+// Deputy voting pattern analysis: computes similarity scores between user answers and deputy votes
 import { topDistinguishingProjects } from '@/data/topDistinguishingProjects';
 
 export interface DeputyVotingPattern {
