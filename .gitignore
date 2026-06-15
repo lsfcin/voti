@@ -1,1 +1,4 @@
 node_modules
+
+# codegraph knowledge graph index
+.codegraph/
