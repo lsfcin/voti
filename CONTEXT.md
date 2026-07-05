@@ -1,5 +1,6 @@
 # Voti
 > Political alignment tool comparing user answers to real deputy voting records
+> goal: [startapps-voti](../../brain/goals/startapps-voti.md)
 
 Political alignment tool — users answer a questionnaire about legislative topics; results are compared to real deputy voting records to compute affinity scores.
 
@@ -70,6 +71,11 @@ API routes → Brazilian Congress scraping → deputy/voting data
 - SPECS.md does not exist yet — add it when the data model and scoring algorithm stabilize.
 - Scraping routes are fragile (Congress website structure changes); isolate parsing logic.
 - No auth — all API routes are public; keep sensitive operations on the admin (`/extrair`) page.
+- `verify:fast` = `next lint` (see code/VERIFY.md). `curly`, `max-lines-per-function`,
+  `@typescript-eslint/no-explicit-any` are `warn` not `error` — the plugin registration
+  needed for the last one was missing until it was wired in, which had silently let a real
+  backlog accumulate (~15 files: components mostly over the 40-line limit, several
+  `any` types). Pay it down incrementally, then promote each rule back to `error`.
 
 <!-- routing:start -->
 ## Routing
