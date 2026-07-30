@@ -31,13 +31,17 @@ export function parseCSVLine(line: string): string[] {
 export function parseCSV(csvContent: string): VotingProject[] {
   const projects: VotingProject[] = [];
   const lines = csvContent.split('\n').filter(line => line.trim());
-  if (lines.length < 2) return projects;
+  if (lines.length < 2) {
+    return projects;
+  }
 
   const headers = parseCSVLine(lines[0]);
   const votingHeaders = headers.slice(2);
 
   votingHeaders.forEach((header, index) => {
-    if (!header || header.trim() === '') return;
+    if (!header || header.trim() === '') {
+      return;
+    }
 
     const project: VotingProject = {
       id: `projeto-${index + 1}`,
@@ -48,7 +52,9 @@ export function parseCSV(csvContent: string): VotingProject[] {
 
     for (let i = 1; i < lines.length; i++) {
       const values = parseCSVLine(lines[i]);
-      if (values.length < 3) continue;
+      if (values.length < 3) {
+        continue;
+      }
 
       const deputyName = values[0]?.trim();
       const vote = values[index + 2]?.trim();

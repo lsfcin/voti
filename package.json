@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write 'src/**/*.ts' 'src/**/*.tsx'",
+    "verify:fast": "next lint",
+    "verify:full": "npm run verify:fast && npm run build"
   },
   "dependencies": {
     "@google/genai": "^1.10.0",
@@ -34,6 +37,8 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.35",
-    "@types/pdf-parse": "^1.1.5"
+    "@types/pdf-parse": "^1.1.5",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "prettier": "^3.0.0"
   }
 }

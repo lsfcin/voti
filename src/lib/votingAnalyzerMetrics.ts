@@ -49,7 +49,9 @@ export function calculateEntropy(project: VotingProject): number {
   const voteCounts = getVoteCounts(project);
   const total = voteCounts.yes + voteCounts.no + voteCounts.abstention + voteCounts.absence;
 
-  if (total === 0) return 0;
+  if (total === 0) {
+    return 0;
+  }
 
   const probabilities = [
     voteCounts.yes / total,
@@ -73,7 +75,9 @@ export function calculateVariance(project: VotingProject): number {
     }
   });
 
-  if (numericVotes.length === 0) return 0;
+  if (numericVotes.length === 0) {
+    return 0;
+  }
 
   const mean = numericVotes.reduce((sum, v) => sum + v, 0) / numericVotes.length;
   return numericVotes.reduce((sum, v) => sum + Math.pow(v - mean, 2), 0) / numericVotes.length;
@@ -83,7 +87,9 @@ export function calculatePolarizationIndex(project: VotingProject): number {
   const voteCounts = getVoteCounts(project);
   const total = voteCounts.yes + voteCounts.no;
 
-  if (total === 0) return 0;
+  if (total === 0) {
+    return 0;
+  }
 
   const yesRatio = voteCounts.yes / total;
   const noRatio = voteCounts.no / total;
