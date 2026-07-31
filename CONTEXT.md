@@ -18,8 +18,8 @@ rebuild.
 <!-- routing:start -->
 ## Routing
 
-| File | Interface | API | Description |
-|------|-----------|-----|-------------|
-| [`README.md`](README.md) | — | — | Vôti 🗳️ |
-| [`SPECS.md`](SPECS.md) | — | — | SPECS — Vôti |
+| File | Description |
+|------|-------------|
+| [`README.md`](README.md) | Vôti 🗳️ |
+| [`SPECS.md`](SPECS.md) | SPECS — Vôti |
 <!-- routing:end -->
