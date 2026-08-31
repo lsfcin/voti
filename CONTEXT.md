@@ -1,6 +1,6 @@
 # Vôti
 > Political alignment tool comparing user answers to real deputy voting records — ARCHIVED as a spec
-> goal: [startapps-voti](../../brain/goals/startapps-voti.md)
+> goal: [startapps](../../brain/goals/startapps.md)
 
 **Archived 2026-07-30. There is no code here.** The implementation was deleted deliberately; the
 project will be rebuilt from scratch when it comes up again.
